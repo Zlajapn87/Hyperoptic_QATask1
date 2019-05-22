@@ -23,25 +23,24 @@ public class Invalid_Input_Test {
         uqForms = PageFactory.initElements(driver, FillingOutForms.class); //page factory
 
     }
-/*
+
     @AfterClass(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }
-*/
-    @Test //Data Provider Classa
+
+    @Test
     public void testFormNegative(){
         uqForms.loadPage();
         uqForms.setTtext_Name("test");
         uqForms.setTtext_Message("test");
         uqForms.setTtext_Captcha("-1");
 
-        //Getting the initial Captcha Value, which will be validated later & click on Submit button
-        String initialValue = uqForms.getText_Captcha(); System.out.println("Initial Value is:" + initialValue);
+        //Getting the initial Captcha Value, which will be validated later
+        String initialValue = uqForms.getText_Captcha();
         uqForms.click_Submit();
 
-        //Validation that initial captcha value and captcha value upon the Submit action are not the same
-        //Note: Captcha value should be altered
+        //Validation that captcha value has been altered upon the submit action
         Assert.assertNotEquals(initialValue, uqForms.getText_Captcha());
     };
 

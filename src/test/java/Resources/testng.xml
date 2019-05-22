@@ -10,4 +10,11 @@
         </classes>
     </test>
 
+    <test name="Test2">
+
+        <classes>
+            <class name="com.ultimateqa.forms.tests.Valid_Input_Test"></class>
+        </classes>
+    </test>
+
 </suite>
