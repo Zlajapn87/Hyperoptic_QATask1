@@ -18,7 +18,7 @@ public class FillingOutForms extends BaseClass{
     String attributeFirstDigit = "data-first_digit";
     String attributeSecondDigit = "data-second_digit";
 
-
+    //Constructor
     public FillingOutForms(WebDriver driver) {
         super(driver);
         this.PAGE_TITLE = "Filling Out Forms - Ultimate QA";

@@ -15,25 +15,28 @@ public class BaseClass {
     //Contructor
     public BaseClass(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 5); //explicit wait
+        wait = new WebDriverWait(driver, 3); //explicit wait
     };
 
+    //Methods common to any available page
     public void loadPage(){
         driver.get(getPageUrl());
         Assert.assertTrue((driver.getTitle()).contains(getPageTitle()));
     };
+
     public void setElementText(WebElement element, String text){
         element.clear();
         element.sendKeys(text);
         Assert.assertEquals(element.getAttribute("value"), text);
     };
+
     public void clickElement(WebElement element){
         element.click();
     };
 
     public String getDigit(WebElement element, String attribute){
        return element.getAttribute(attribute);
-    }
+    };
 
     public String getPageUrl(){
         return PAGE_URL;
@@ -41,27 +44,5 @@ public class BaseClass {
     public String getPageTitle(){
         return PAGE_TITLE;
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

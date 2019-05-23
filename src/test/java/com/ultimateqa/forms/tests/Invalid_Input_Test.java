@@ -19,7 +19,7 @@ public class Invalid_Input_Test {
     @BeforeClass(alwaysRun = true)
     public void setup(){
         System.setProperty("webdriver.chrome.driver", "src/main/Drivers/chromedriver_74.exe");
-        driver = new ChromeDriver(); //Driver has to be created before the page.
+        driver = new ChromeDriver();
         uqForms = PageFactory.initElements(driver, FillingOutForms.class); //page factory
 
     }
@@ -36,15 +36,12 @@ public class Invalid_Input_Test {
         uqForms.setTtext_Message("test");
         uqForms.setTtext_Captcha("-1");
 
-        //Getting the initial Captcha Value, which will be validated later
+        //Getting the initial Captcha Value, which will be validated
         String initialValue = uqForms.getText_Captcha();
         uqForms.click_Submit();
 
         //Validation that captcha value has been altered upon the submit action
         Assert.assertNotEquals(initialValue, uqForms.getText_Captcha());
     };
-
-
-
 
 }

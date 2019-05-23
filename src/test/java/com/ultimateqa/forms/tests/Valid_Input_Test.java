@@ -3,6 +3,7 @@ package com.ultimateqa.forms.tests;
 import com.ultimateqa.Pages.FillingOutForms;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,12 +18,12 @@ public class Valid_Input_Test {
     public WebDriver driver;
     FillingOutForms uqForms;
 
+
     @BeforeClass(alwaysRun = true)
     public void setup(){
         System.setProperty("webdriver.chrome.driver", "src/main/Drivers/chromedriver_74.exe");
-        driver = new ChromeDriver(); //Driver has to be created before the page.
+        driver = new ChromeDriver();
         uqForms = PageFactory.initElements(driver, FillingOutForms.class); //page factory
-
     };
 
 
@@ -46,7 +47,10 @@ public class Valid_Input_Test {
         uqForms.click_Submit();
         WebDriverWait wait = new WebDriverWait(driver, 2);
 
-        Assert.assertEquals(wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath("//div[@id = 'et_pb_contact_form_1']/div/p")))).getText(), "Success");
+        //Waiting for message to be displayed and verifying the message text
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id = 'et_pb_contact_form_1']/div/p")));
+        WebElement message = driver.findElement(By.xpath("//div[@id = 'et_pb_contact_form_1']/div/p"));
+        Assert.assertEquals(message.getText(), "Success");
 
 
     };
